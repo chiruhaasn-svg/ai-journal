@@ -1,0 +1,3 @@
+# AI Journal
+A personal journaling app that uses a locally-running AI model to analyze your entries — extracting mood, a summary, and tags automatically as you write.
+...

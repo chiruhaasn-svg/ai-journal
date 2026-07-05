@@ -7,3 +7,5 @@ __pycache__/
 backend/venv/
 venv/
 backend/journal.db
+backend/journal.db
+backend/journal.db.bak
