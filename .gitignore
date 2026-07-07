@@ -9,3 +9,4 @@ venv/
 backend/journal.db
 backend/journal.db
 backend/journal.db.bak
+frontend/dist/

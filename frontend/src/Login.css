@@ -1,0 +1,84 @@
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b1f24;
+}
+.login-card {
+  width: 340px;
+  background: #24292f;
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  color: #e6e6e6;
+}
+.login-title {
+  font-size: 22px;
+  margin: 0 0 0.25rem;
+  text-align: center;
+}
+.login-subtitle {
+  font-size: 13px;
+  color: #9aa0a6;
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+.login-form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #3a3f45;
+  background: #1b1f24;
+  color: #e6e6e6;
+}
+.login-form button, .keypad button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #c08a4e;
+  color: #1b1f24;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #3a3f45;
+  display: inline-block;
+}
+.dot.filled { background: #c08a4e; }
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.keypad button {
+  background: #2f353b;
+  color: #e6e6e6;
+  height: 52px;
+  font-size: 17px;
+}
+.login-error {
+  color: #e07a7a;
+  font-size: 13px;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+.login-toggle {
+  background: none;
+  border: none;
+  color: #c08a4e;
+  font-size: 13px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}

@@ -13,8 +13,11 @@ class Entry(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     tags = Column(String)  # simple comma-separated string, matches ai_service.py output
+    coaching_feedback = Column(Text)  # AI reflection + one actionable suggestion
+    bookmarked = Column(Boolean, default=False)
     media = relationship("Media", back_populates="entry")
     embedding = relationship("EntryEmbedding", uselist=False, back_populates="entry")
+    coach_actions = relationship("CoachAction", back_populates="entry")
 
 class Tag(Base):
     __tablename__ = "tags"
@@ -60,6 +63,15 @@ class EntryEmbedding(Base):
     vector = Column(Text)  # stored as JSON string of floats; sqlite-vec table mirrors this
     entry = relationship("Entry", back_populates="embedding")
 
+class CoachAction(Base):
+    __tablename__ = "coach_actions"
+    id = Column(Integer, primary_key=True)
+    entry_id = Column(Integer, ForeignKey("entries.id"), nullable=False)
+    action_type = Column(String, nullable=False)  # "coach", "summarize", "followup", "suggest"
+    result = Column(Text)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    entry = relationship("Entry", back_populates="coach_actions")
+
 class AISettings(Base):
     __tablename__ = "ai_settings"
     id = Column(Integer, primary_key=True)
@@ -70,3 +82,32 @@ class Reminder(Base):
     id = Column(Integer, primary_key=True)
     scheduled_time = Column(String)  # "HH:MM", derived from writing pattern
     active = Column(Boolean, default=True)
+class AuthSettings(Base):
+    __tablename__ = "auth_settings"
+    id = Column(Integer, primary_key=True)
+    pin_hash = Column(String)
+    pin_salt = Column(String)
+    password_hash = Column(String)
+    password_salt = Column(String)
+    display_name = Column(String)
+
+class UserProfile(Base):
+    __tablename__ = "user_profile"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    date_of_birth = Column(String)  # YYYY-MM-DD
+    gender = Column(String)
+
+class Review(Base):
+    __tablename__ = "reviews"
+    id = Column(Integer, primary_key=True)
+    period_type = Column(String, nullable=False)
+    period_label = Column(String, nullable=False)
+    content = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+class Template(Base):
+    __tablename__ = "templates"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    prompt_text = Column(Text, nullable=False)
